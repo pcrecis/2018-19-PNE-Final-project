@@ -11,7 +11,7 @@
     List Species:
       <br><br>
     Limit:
-      <input type="text" name="msg">
+      <input type="text" name="limit">
       <input type="submit" value="SEND">
       <br><br>
       <br><br>
@@ -29,12 +29,56 @@
     Chromosome length:
       <br><br>
     Name of the specie:
-      <input type="text" name="msg">
+      <input type="text" name="specie">
       <br><br>
                 Chromo:
-      <input type="text" name="msg">
+      <input type="text" name="chromo">
+      <br><br>
       <input type="submit" value="SEND">
       <br><br>
+      <br><br>
     </form>
-  </body>
+  <form action="geneSeq" method="get">
+    Sequence of a given human gene:
+      <br><br>
+    Gene:
+      <input type="text" name="gene">
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+  <form action="geneInfo" method="get">
+    Start, end, length, id and chromosome of a given gene:
+      <br><br>
+    Gene:
+      <input type="text" name="gene">
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+  <form action="geneCal" method="get">
+    Calculations on a given human gene; the total length and the percentage of all its bases:
+      <br><br>
+    Gene:
+      <input type="text" name="gene">
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+  <form action="geneList" method="get">
+    Names of the genes located in a chromosome from the start to end positions:
+      <br><br>
+    Chromosome:
+      <input type="text" name="chromo">
+      <br><br>
+    Start position:
+      <input type="text" name="start">
+      <br><br>
+    End position:
+      <input type="text" name="start">
+      <br><br>
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
 </html>
