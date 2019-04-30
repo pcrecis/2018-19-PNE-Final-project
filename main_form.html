@@ -7,33 +7,34 @@
   </head>
   <body style="background-color: yellow;">
     <h1>MAIN SERVER</h1>
-    <form ="info/species" method="get">
+    <form action="listSpecies" method="get">
     List Species:
-      <input type="checkbox" name="chk">
       <br><br>
-    Limit: <br>
+    Limit:
       <input type="text" name="msg">
       <input type="submit" value="SEND">
       <br><br>
+      <br><br>
     </form>
-      <form ="info/assembly/species" method="get">
+    <form action="karyotype" method="get">
     Karyotipe:
-      <input type="checkbox" name="chk">
       <br><br>
-    Name of the specie: <br>
+    Name of the specie:
+      <input type="text" name="msg">
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+    <form action="chromosomeLength" method="get">
+    Chromosome length:
+      <br><br>
+    Name of the specie:
+      <input type="text" name="msg">
+      <br><br>
+                Chromo:
       <input type="text" name="msg">
       <input type="submit" value="SEND">
       <br><br>
     </form>
-      <form ="info/species" method="get">
-    Karyotipe:
-      <input type="checkbox" name="chk">
-      <br><br>
-    Name of the specie: <br>
-      <input type="text" name="msg">
-      <input type="submit" value="SEND">
-      <br><br>
-    </form>
-</form>
   </body>
 </html>
