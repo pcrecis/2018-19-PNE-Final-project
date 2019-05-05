@@ -64,18 +64,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         elif '/listSpecies' in self.path:
             content = open_html()
             species = '>'
-            limit = self.path[self.path.find("=") + 1:]
-            if limit in self.path:
-
-            #resource = self.path.split("?")
-            #print(resource)
-
-            #if not "limit=" in resource[1]:
-                #print('hola')
-                #limit = str(199)
-            #else:
-                #limit = resource[1][resource[1].find("=")+1:]
-                #print(limit, '!')
+            if "limit" in self.path:
+                limit = self.path[self.path.find("=") + 1:]
                 if limit.isdigit() == True:
                     info_species = get_info('/info/species' + '?content-type=application/json')
                     subject = info_species['species']
@@ -135,7 +125,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 specie_in = specie.replace('+','%20')
                 info_kar = get_info('/info/assembly/{}'.format(specie_in) + '?content-type=application/json')
                 if 'error' in info_kar:
-                    error = 'Sorry the karyotype for that specie "{}" was not found in the database'.format(specie)
+                    error = 'Sorry the karyotype for that specie "{}" was not found in the database'.format(specie_in)
                     f = open("error.html")
                     code = 404
                     content = f.read().format(error)
@@ -161,25 +151,32 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         elif '/chromosomeLength' in self.path:
             try:
+                dict_1 = dict()
                 content = open_html()
-                msg_sent = self.path.split("&")
-                specie = msg_sent[0][msg_sent[0].find("=") +1:]
-                specie_in = specie.replace('+', '%20')
-                chromo = msg_sent[1][msg_sent[1].find("=") +1:]
-                info_chromo = get_info('/info/assembly/{}/{}'.format(specie_in, chromo) + '?content-type=application/json')
+                msg_sent_1 = self.path.split("?")
+                msg_sent_2 = msg_sent_1[1].split('&')
+                for i in msg_sent_2:
+                    try:
+                        keys = i.split("=")[0]
+                        values = i.split("=")[1]
+                        values = values.replace('+', '_')
+                        dict_1[keys] = values
+                    except IndexError:
+                        pass
+                info_chromo = get_info('/info/assembly/{}/{}'.format(dict_1['specie'], dict_1['chromo']) + '?content-type=application/json')
                 if 'error' in info_chromo:
                     error = 'Sorry either the specie or the chomosome was not found in the database'
                     f = open("error.html")
                     code = 404
                     content = f.read().format(error)
                     f.close()
-                elif chromo == '':
+                elif dict_1['chromo'] == '':
                     error = 'Sorry either the specie or the chomosome was not found in the database'
                     f = open("error.html")
                     code = 404
                     content = f.read().format(error)
                     f.close()
-                elif specie == '':
+                elif dict_1['specie'] == '':
                     error = 'Sorry either the specie or the chomosome was not found in the database'
                     f = open("error.html")
                     code = 404
@@ -188,13 +185,15 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 else:
                     length = '>' + '<li>' + str(info_chromo['length']) + '</li>'
                     type_h = '<ul>'
-                    h1 = 'Length of the chromosome: {} of the specie: {}'.format(chromo, specie)
+                    h1 = 'Length of the chromosome: {} of the specie: {}'.format(dict_1['chromo'], dict_1['specie'])
                     code = 200
                     content = content.format(h1, type_h, length)
             except KeyError:
-                f = open('error.html')
-            except IndexError:
-                f = open('error.html')
+                error = 'Sorry both parameters are needed'
+                f = open("error.html")
+                code = 404
+                content = f.read().format(error)
+                f.close()
         elif '/geneSeq' in self.path:
             try:
                 gen_seq = ' style="word-break:break-all">'
@@ -240,7 +239,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 content = f.read().format(error)
                 f.close()
 
-        elif '/geneCal' in self.path:
+        elif '/geneCalc' in self.path:
             try:
                 info = '>'
                 content = open_html()
@@ -266,8 +265,45 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 code = 404
                 content = f.read().format(error)
                 f.close()
-        #elif 'geneList'
-            #endpoint = '/overlap/region/human' + chromo + ":"+start+"-"+end + ?feature=gene;feature=transcript;feature=cds;feature=exon;content-type=application/json
+        elif '/geneList' in self.path:
+            try:
+                info = '>'
+                dict_1 = dict()
+                content = open_html()
+                msg_sent_1 = self.path.split("?")
+                msg_sent_2 = msg_sent_1[1].split('&')
+                print(msg_sent_2)
+                for i in msg_sent_2:
+                    try:
+                        keys = i.split("=")[0]
+                        values = i.split("=")[1]
+                        values = values.replace('+', '_')
+                        print(values, '!')
+                        dict_1[keys] = values
+                        print(dict_1)
+                    except IndexError:
+                        pass
+                info_list = get_info('/overlap/region/human/' + dict_1['chromo'] +":"+dict_1['start']+"-"+dict_1['end'] + '?content-type=application/json;feature=gene;feature=transcript;feature=cds;feature=exon')
+                print(info_list, 'p')
+                type_h = '<ul>'
+                h1 = 'Names of the genes located in the chromosome {} from the start {} to end positions {}'.format(dict_1['chromo'], dict_1['start'], dict_1['end'])
+                for i in range(len(info_list)):
+                    info += '<li>' + 'Genes: ' + info_list[i]['external_name'] + '</li'  #i convert everything to string when adding to a list because 'int' objects are not subscriptable
+                print(info)
+                code = 200
+                content = content.format(h1, type_h, info)
+            except KeyError:
+                error = 'Sorry there are no genes located in that chromosome and/or in those positions'
+                f = open("error.html")
+                code = 404
+                content = f.read().format(error)
+                f.close()
+            except IndexError:   #list index out of range
+                error = 'Sorry there are no genes located in that chromosome and/or in those positions'
+                f = open("error.html")
+                code = 404
+                content = f.read().format(error)
+                f.close()
 
         else:
             error = 'Sorry that endpoint is not valid'
