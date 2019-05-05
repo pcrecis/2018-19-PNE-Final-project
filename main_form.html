@@ -6,67 +6,67 @@
     <title>Main server</title>
   </head>
   <body style="background-color: yellow;">
-    <h1>MAIN SERVER</h1>
+    <h1><u>MAIN SERVER</u></h1>
     <form action="listSpecies" method="get">
-    List Species:
+      <u>List Species:</u>
       <br><br>
     Limit:
       <input type="text" name="limit">
       <input type="submit" value="SEND">
       <br><br>
-      <br><br>
     </form>
     <form action="karyotype" method="get">
-    Karyotipe:
+  ------------------------------------------------------------------------------------------------------------------
+    <br><u>Karyotipe:</u>
       <br><br>
     Name of the specie:
-      <input type="text" name="msg">
+      <input type="text" name="specie">
       <input type="submit" value="SEND">
-      <br><br>
       <br><br>
     </form>
     <form action="chromosomeLength" method="get">
-    Chromosome length:
+  ------------------------------------------------------------------------------------------------------------------
+      <br><u>Chromosome length:</u>
       <br><br>
     Name of the specie:
       <input type="text" name="specie">
       <br><br>
-                Chromo:
+      Chromo:
       <input type="text" name="chromo">
       <br><br>
       <input type="submit" value="SEND">
       <br><br>
-      <br><br>
     </form>
   <form action="geneSeq" method="get">
-    Sequence of a given human gene:
+  ------------------------------------------------------------------------------------------------------------------
+    <br><u>Sequence of a given human gene:</u>
       <br><br>
     Gene:
       <input type="text" name="gene">
-      <input type="submit" value="SEND">
-      <br><br>
+      <input type="submit" value="SEND"><br>
       <br><br>
     </form>
   <form action="geneInfo" method="get">
-    Start, end, length, id and chromosome of a given gene:
+  ------------------------------------------------------------------------------------------------------------------
+    <br><u>Start, end, length, id and chromosome of a given human gene:</u>
       <br><br>
     Gene:
       <input type="text" name="gene">
-      <input type="submit" value="SEND">
-      <br><br>
+      <input type="submit" value="SEND"><br>
       <br><br>
     </form>
-  <form action="geneCal" method="get">
-    Calculations on a given human gene; the total length and the percentage of all its bases:
+  <form action="geneCalc" method="get">
+  ------------------------------------------------------------------------------------------------------------------
+    <br><u>Calculations on a given human gene; the total length and the percentage of all its bases:</u>
       <br><br>
     Gene:
       <input type="text" name="gene">
-      <input type="submit" value="SEND">
-      <br><br>
+      <input type="submit" value="SEND"><br>
       <br><br>
     </form>
   <form action="geneList" method="get">
-    Names of the genes located in a chromosome from the start to end positions:
+  ------------------------------------------------------------------------------------------------------------------
+    <br><u>Names of the human genes located in a chromosome from the start to end positions:</u>
       <br><br>
     Chromosome:
       <input type="text" name="chromo">
@@ -75,10 +75,11 @@
       <input type="text" name="start">
       <br><br>
     End position:
-      <input type="text" name="start">
+      <input type="text" name="end">
       <br><br>
       <input type="submit" value="SEND">
       <br><br>
       <br><br>
     </form>
+  </body>
 </html>
