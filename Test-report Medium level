@@ -1,0 +1,237 @@
+TEXT FILE FOR TESTING THE ENDPOINTS OF THE MEDIUM LEVEL (the argument passed and the response from the server)
+
+To this http://localhost:8000 you can add different endpoints belonging to the medium level:
+
+1. /geneSeq with a parameter (human gene) mandatory
+ - If we introduce the argument with a gene that is in the database it returns the sequence of the given gene:
+    ARGUMENT: http://localhost:8000/geneSeq?gene=FRAT1
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Sequence of the human gene: FRAT1</h1>
+                <ul>
+                 <p style="word-break:break-all">ATTCCGGCTCCCGCGGCTGCAGGCGCGCGGCTAGAGTGCCTGGCGGGCTCCGGCTTCCGCGTCCGCCCCGGCCCCGGTCCAGACTTAGTCTTCAGCTCCGCGCCCGCTCCGCCGCGGCCCACCGCGCCCGCCGGCAGCCGAGCCCCCAGCGACGCCCGCACAGCTCCGGGTGCCCAGACAGGGGGCCATGCCGTGCCGG
+                 AGGGAGGAGGAAGAGGAAGCCGGCGAGGAGGCGGAGGGGGAGGAAGAGGAGGAGGACAGCTTCCTCCTACTGCAGCAGTCAGTGGCGCTGGGCAGCTCGGGCGAGGTGGACCGGCTGGTGGCCCAGATCGGCGAGACGCTGCAGCTGGACGCGGCGCAGCACAGCCCGGCCTCGCCGTGCGGGCCCCCGGGGGCGCCGCTGCGGGCCCCGGGGCCCCTGGCTGCGGCGGTG
+                 CCGGCGGACAAGGCCAGGTCCCCGGCGGTGCCGCTGCTGCTGCCGCCCGCGTTGGCGGAGACTGTGGGCCCGGCGCCCCCTGGGGTCCTGCGCTGCGCCCTGGGGGACCGCGGCCGCGTGCGGGGCCGCGCTGCGCCCTACTGCGTGGCCGAGCTCGCCACAGGCCCCAGCGCGCTGTCCCCACTGCCCCCTCAGGCCGACCTTGATGGGCCTCCGGGAGCTGGCAAGCAG
+                 GGCATCCCGCAGCCGCTGTCGGGTCCGTGCCGGCGAGGATGGCTCCGGGGCGCCGCCGCCTCCCGCCGCCTGCAGCAGCGACGCGGGTCCCAACCAGAAACCCGCACAGGCGACGACGACCCGCACCGGCTTCTGCAGCAGCTAGTGCTCTCTGGAAACCTCATCAAGGAGGCCGTGCGAAGGCTTCATTCGCGACGGCTGCAGTTACGTGCAAAGCTTCCCCAACGCCCG
+                 CTCCTGGGACCTCTGTCGGCCCCGGTGCATGAACCCCCTTCGCCTCGCAGCCCTCGCGCGGCCTGCAGTGACCCTGGCGCCTCCGGGAGGGCGCAGCTCAGAACTGGCGACGGCGTTCTTGTGCCTGGCAGCTAACACGCCCGGGGTGGCCACAGCGCCAGCCTCAGACTGGAGGGCAAGGGGTTCCCTTGAGGGCTGCAGTTCTACTCAGGCTGGTGGAGAACTCTGGCT
+                 TTTGGAAGCGAGAGTAAAAAGCTAATGACGAGGAACCGAAAAATCGCGAGTGTTTCGCGGGTAACTGGGGTTGAGGGCCAAAATATTTGGAATGAAGGACTTTGGCCCTATTTAAGGCAGATTTTACAGAGCGCACCTCAAACGTACAAGTCAGTAGGACTCCTTATTTGGCGTGACCCGACCTGGCCGCGGAGCCTGCATTTCCTCGCAGCCTCTCAGTGCCCTCCAGCC
+                 CCGCGACCATGTGGCCACAATCCACGCTTCTCCGGATCGCGGTGCGCCGGAACCACGGAGGATGATGCCAGTTACTTGCTTTACCTTTTCAGGGCTGGCTCCTGATCCACTTTGGGGGAGGAGAACATGAGTAGATAATTTCAGGGTGCAGCCCAATCTGCCAGACTTAAAAAAACCATCTTGTGTCTTTGGAGGTGCTGCTTAATACCAAACATGCGGTGCCATGAAGGG
+                 ACCCTTTGGGGGTTGAATAGGAGTTAACCCCTGCGCTCTCTTTGCAACTGTCTCTCTTCTCAGAGTGGTGGGGGAAGGCTGTACGACACGGGTGGGGAAAGGAGGTGGGGGCGGGGAGTATTGAATGGTGGTGGAAGGGTAGAGAGGCGCGGAGTGAACCCCACGCCCTGTCTAAAGTGTATTTTCAGAGCCGGCCCGCCTCTCCTCGGTTCAAGGTCACTGTTTCCTGGG
+                 CACGCACTGGGTTGCGGGACAGAGTAGCCAGGTTCTGCCGGTGCTCGGAGAAGAGCGCAGTGTTTTGCAAGTGCTGGAGTCTCCTGAGGACACGCGCGTCGCCGCCACCGCGGGTGTGGGAAAGCGCGGACGTGCTGGGCGGCTGTGCTTCGGTAGGCGACCACCGCCCCTGGCCGCGCTCCGGGCTTTCACGGAAACTCCCGAGACCGGGCCCTGGGTTCCTCCTCTCCT
+                 ACTCGGCTCTGCAGTCCTACTCAAGCGGGTGGCTCTGGGATCCTGGGGGCCTGGGTTGGGGGCTAGGGAGACGCCATGTGATGGACACTCCAGGGACACACAGCCTAGCACAGCAGCTTATAATGGGCTCTCCGGGGCCATTTGCAATAACAGCTGCAATTCCCTGGATAGACGAGTTGATTTCCTCCCTCTGCCCCTCCCCCAGCCATGCCAGCTGGCCTTTGTAAGTGC
+                 AGGAAACCGAGTAGAAAATGTGACCCTCCAAATGGAGAAGCTGCAGGCTTTGCCATTGTGAACCATGGTGAAGTGCTTGGAACATACTGTTCACTCACTCTAAAGGCGCTGAGACTGTGCTGTTGTTCTCGTTTTTATAGTCAATGGCTTGTTCATCATCCAGATGTGGCTACTGACATATCTACACTTCGCACCGGAGTGTCTGGAATTGTGGCTATCCTGATTATAGGA
+                 TTTTAACTTAACTGAAATGCCTGCTTTGAATAAATGTGTTGGGTTTTTTGTTTGGTTTTATTTTATACTTGCCATCAGTGAAAAAGATGTACAGAACACATTTCTCTGATCTCCATAAACATGAAAACACTTGAAATCTC</p>
+                <a href="/">Main page</a>
+            </body>
+            </html
+ - If we introduce the argument with the gene in lower case the result is the same:
+    ARGUMENT: http://localhost:8000/geneSeq?gene=frat1
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Sequence of the human gene: frat1</h1>
+                <ul>
+                 <p style="word-break:break-all">ATTCCGGCTCCCGCGGCTGCAGGCGCGCGGCTAGAGTGCCTGGCGGGCTCCGGCTTCCGCGTCCGCCCCGGCCCCGGTCCAGACTTAGTCTTCAGCTCCGCGCCCGCTCCGCCGCGGCCCACCGCGCCCGCCGGCAGCCGAGCCCCCAGCGACGCCCGCACAGCTCCGGGTGCCCAGACAGGGGGCCATGCCGTGCCGG
+                 AGGGAGGAGGAAGAGGAAGCCGGCGAGGAGGCGGAGGGGGAGGAAGAGGAGGAGGACAGCTTCCTCCTACTGCAGCAGTCAGTGGCGCTGGGCAGCTCGGGCGAGGTGGACCGGCTGGTGGCCCAGATCGGCGAGACGCTGCAGCTGGACGCGGCGCAGCACAGCCCGGCCTCGCCGTGCGGGCCCCCGGGGGCGCCGCTGCGGGCCCCGGGGCCCCTGGCTGCGGCGGTG
+                 CCGGCGGACAAGGCCAGGTCCCCGGCGGTGCCGCTGCTGCTGCCGCCCGCGTTGGCGGAGACTGTGGGCCCGGCGCCCCCTGGGGTCCTGCGCTGCGCCCTGGGGGACCGCGGCCGCGTGCGGGGCCGCGCTGCGCCCTACTGCGTGGCCGAGCTCGCCACAGGCCCCAGCGCGCTGTCCCCACTGCCCCCTCAGGCCGACCTTGATGGGCCTCCGGGAGCTGGCAAGCAG
+                 GGCATCCCGCAGCCGCTGTCGGGTCCGTGCCGGCGAGGATGGCTCCGGGGCGCCGCCGCCTCCCGCCGCCTGCAGCAGCGACGCGGGTCCCAACCAGAAACCCGCACAGGCGACGACGACCCGCACCGGCTTCTGCAGCAGCTAGTGCTCTCTGGAAACCTCATCAAGGAGGCCGTGCGAAGGCTTCATTCGCGACGGCTGCAGTTACGTGCAAAGCTTCCCCAACGCCCG
+                 CTCCTGGGACCTCTGTCGGCCCCGGTGCATGAACCCCCTTCGCCTCGCAGCCCTCGCGCGGCCTGCAGTGACCCTGGCGCCTCCGGGAGGGCGCAGCTCAGAACTGGCGACGGCGTTCTTGTGCCTGGCAGCTAACACGCCCGGGGTGGCCACAGCGCCAGCCTCAGACTGGAGGGCAAGGGGTTCCCTTGAGGGCTGCAGTTCTACTCAGGCTGGTGGAGAACTCTGGCT
+                 TTTGGAAGCGAGAGTAAAAAGCTAATGACGAGGAACCGAAAAATCGCGAGTGTTTCGCGGGTAACTGGGGTTGAGGGCCAAAATATTTGGAATGAAGGACTTTGGCCCTATTTAAGGCAGATTTTACAGAGCGCACCTCAAACGTACAAGTCAGTAGGACTCCTTATTTGGCGTGACCCGACCTGGCCGCGGAGCCTGCATTTCCTCGCAGCCTCTCAGTGCCCTCCAGCC
+                 CCGCGACCATGTGGCCACAATCCACGCTTCTCCGGATCGCGGTGCGCCGGAACCACGGAGGATGATGCCAGTTACTTGCTTTACCTTTTCAGGGCTGGCTCCTGATCCACTTTGGGGGAGGAGAACATGAGTAGATAATTTCAGGGTGCAGCCCAATCTGCCAGACTTAAAAAAACCATCTTGTGTCTTTGGAGGTGCTGCTTAATACCAAACATGCGGTGCCATGAAGGG
+                 ACCCTTTGGGGGTTGAATAGGAGTTAACCCCTGCGCTCTCTTTGCAACTGTCTCTCTTCTCAGAGTGGTGGGGGAAGGCTGTACGACACGGGTGGGGAAAGGAGGTGGGGGCGGGGAGTATTGAATGGTGGTGGAAGGGTAGAGAGGCGCGGAGTGAACCCCACGCCCTGTCTAAAGTGTATTTTCAGAGCCGGCCCGCCTCTCCTCGGTTCAAGGTCACTGTTTCCTGGG
+                 CACGCACTGGGTTGCGGGACAGAGTAGCCAGGTTCTGCCGGTGCTCGGAGAAGAGCGCAGTGTTTTGCAAGTGCTGGAGTCTCCTGAGGACACGCGCGTCGCCGCCACCGCGGGTGTGGGAAAGCGCGGACGTGCTGGGCGGCTGTGCTTCGGTAGGCGACCACCGCCCCTGGCCGCGCTCCGGGCTTTCACGGAAACTCCCGAGACCGGGCCCTGGGTTCCTCCTCTCCT
+                 ACTCGGCTCTGCAGTCCTACTCAAGCGGGTGGCTCTGGGATCCTGGGGGCCTGGGTTGGGGGCTAGGGAGACGCCATGTGATGGACACTCCAGGGACACACAGCCTAGCACAGCAGCTTATAATGGGCTCTCCGGGGCCATTTGCAATAACAGCTGCAATTCCCTGGATAGACGAGTTGATTTCCTCCCTCTGCCCCTCCCCCAGCCATGCCAGCTGGCCTTTGTAAGTGC
+                 AGGAAACCGAGTAGAAAATGTGACCCTCCAAATGGAGAAGCTGCAGGCTTTGCCATTGTGAACCATGGTGAAGTGCTTGGAACATACTGTTCACTCACTCTAAAGGCGCTGAGACTGTGCTGTTGTTCTCGTTTTTATAGTCAATGGCTTGTTCATCATCCAGATGTGGCTACTGACATATCTACACTTCGCACCGGAGTGTCTGGAATTGTGGCTATCCTGATTATAGGA
+                 TTTTAACTTAACTGAAATGCCTGCTTTGAATAAATGTGTTGGGTTTTTTGTTTGGTTTTATTTTATACTTGCCATCAGTGAAAAAGATGTACAGAACACATTTCTCTGATCTCCATAAACATGAAAACACTTGAAATCTC</p>
+                <a href="/">Main page</a>
+            </body>
+            </html
+ - If we introduce the argument with the parameter gene being a number, a symbol a misspelled gene etc not found in the database the result is:
+    ARGUMENTS: http://localhost:8000/geneSeq?gene=5 |or| http://localhost:8000/geneSeq?gene=fra1 |or| http://localhost:8000/geneSeq?asdfgh
+    SAME RESPONSE FOR ALL OF THEM:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry that gene is not in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+ - If we introduce the argument with a gene with nothing in it or without the parameter gene, the result is:
+    ARGUMENTS: http://localhost:8000/geneSeq?gene= |or| http://localhost:8000/geneSeq?
+    THE SAME RESPONSE FOR ALL OF THEM:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry that gene is not in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+
+2. /geneInfo with a parameter (human gene) mandatory
+ - If we introduce the argument with a gene from the database it returns the start, end, length, id and chromosome of that given gene:
+    ARGUMENT: http://localhost:8000/geneInfo?gene=FRAT1
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Information about the human gene FRAT1: start, end, Length, id and Chromosome</h1>
+                <ul>
+                 <p><li>Start: 97319267<li>End: 97321915<li>Total length: 2649<li>ID: ENSG00000165879<li>Chromosome: 10</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    ARGUMENT: http://localhost:8000/geneInfo?gene=fat1
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Information about the human gene fat1: start, end, Length, id and Chromosome</h1>
+                <ul>
+                 <p><li>Start: 186587794<li>End: 186726722<li>Total length: 138929<li>ID: ENSG00000083857<li>Chromosome: 4</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+ - If we introduce the argument with the parameter gene being a number, a symbol a misspelled gene etc not found in the database, the result is:
+    ARGUMENTS: http://localhost:8000/geneInfo?gene=5 |or| http://localhost:8000/geneInfo?gene=asdfg |or| http://localhost:8000/geneInfo?fra1
+    THE SAME RESPONSE FOR ALL OF THEM:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry that gene is not in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+ - If we introduce the argument with a gene with nothing in it or without the parameter gene, the result is:
+    ARGUMENTS: http://localhost:8000/geneInfo?gene= |or| http://localhost:8000/geneInfo?
+    THE SAME RESPONSE FOR ALL OF THEM:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry that gene is not in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+
+3. /geneCalc with a parameter (human gene) mandatory
+ - If we introduce the argument with a human gene from the database it returns the calculations on the given human gene; the total length and the percentage of all its bases: :
+    ARGUMENT: http://localhost:8000/geneCalc?gene=FRAT1
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Calculations on the human gene FRAT1: Total length and the percentage of all its bases</h1>
+                <ul>
+                 <p><li>Total length: 2649<li>A percentage: 18.0<li>C percentage: 30.2<li>T percentage: 19.7<li>G percentage: 32.0</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    ARGUMENT: http://localhost:8000/geneCalc?gene=fat1
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Calculations on the human gene fat1: Total length and the percentage of all its bases</h1>
+                <ul>
+                 <p><li>Total length: 138929<li>A percentage: 27.1<li>C percentage: 19.6<li>T percentage: 31.4<li>G percentage: 21.9</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+ - If we introduce the argument with the parameter gene being a number, a symbol a misspelled gene etc not found in the database, the result is:
+    ARGUMENTS: http://localhost:8000/geneCalc?gene=9 |or| http://localhost:8000/geneCalc?gene=asdfg |or| http://localhost:8000/geneCalc?gene=fra1
+    SAME RESPONSE FOR ALL OF THEM:
+         <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry that gene is not in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+ - If we introduce the argument with a gene with nothing in it or without the parameter gene, the result is:
+    ARGUMENT: http://localhost:8000/geneCalc?gene= |or| http://localhost:8000/geneCalc?
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry that gene is not in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+
+4. /geneList with 3 parameters (chromosome, start and end positions)
+ - If we introduce the argument with a human gene from the database it returns the calculations on the given human gene; the total length and the percentage of all its bases: :
+    ARGUMENT: http://localhost:8000/geneCalc?gene=FRAT1
+    RESPONSE:
+
+
+5. If other endpoint different than the previous ones is introduced, the server will response with an HTML error page
+    ARGUMENT: http://localhost:8000/notToday
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry that endpoint is not valid</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
