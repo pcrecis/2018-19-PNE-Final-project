@@ -1,0 +1,416 @@
+TEXT FILE FOR TESTING THE ENDPOINTS OF THE BASIC LEVEL (the argument passed and the response from the server)
+
+http://localhost:8000/ this argument returns an HTML page with the forms for accessing to the different services
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Main server</title>
+  <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+  <body style="background-color: yellow;">
+    <h1>MAIN SERVER</h1>
+    <form action="listSpecies" method="get">
+      <u>List Species:</u>
+      <br><br>
+    Limit:
+      <input type="text" name="limit">
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+    <form action="karyotype" method="get">
+    <u>Karyotipe:</u>
+      <br><br>
+    Name of the specie:
+      <input type="text" name="specie">
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+    <form action="chromosomeLength" method="get">
+      <u>Chromosome length:</u>
+      <br><br>
+    Name of the specie:
+      <input type="text" name="specie">
+      <br><br>
+      Chromo:
+      <input type="text" name="chromo">
+      <br><br>
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+  <form action="geneSeq" method="get">
+    <u>Sequence of a given human gene:</u>
+      <br><br>
+    Gene:
+      <input type="text" name="gene">
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+  <form action="geneInfo" method="get">
+    <u>Start, end, length, id and chromosome of a given gene:</u>
+      <br><br>
+    Gene:
+      <input type="text" name="gene">
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+  <form action="geneCal" method="get">
+    <u>Calculations on a given human gene; the total length and the percentage of all its bases:</u>
+      <br><br>
+    Gene:
+      <input type="text" name="gene">
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+  <form action="geneList" method="get">
+    <u>Names of the genes located in a chromosome from the start to end positions:</u>
+      <br><br>
+    Chromosome:
+      <input type="text" name="chromo">
+      <br><br>
+    Start position:
+      <input type="text" name="start">
+      <br><br>
+    End position:
+      <input type="text" name="end">
+      <br><br>
+      <input type="submit" value="SEND">
+      <br><br>
+      <br><br>
+    </form>
+  </body>
+</html>
+
+To this http://localhost:8000 you can add different endpoints:
+
+1. /listSpecies with a parameter (limit) optional
+    - If we introduce the argument without a limit it returns all the species available in the data base:
+    ARGUMENT: http://localhost:8000/listSpecies
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+            <body style="background-color: lightpink;">
+                <h1>Names of all the species available in the database: (no limit)</h1>
+                <ol>
+                 <p><li>house mouse</li><li>human</li><li>domestic guinea pig</li><li>house mouse</li><li>Midas cichlid</li><li>green anole</li><li>White-headed capuchin</li><li>ballan wrasse</li><li>leopard</li><li>torafugu</li><li>Black snub-nosed monkey</li><li>zig-zag eel</li><li>blue-crowned manakin</li><li>Damara mole rat</li><li>gray
+            short-tailed opossum</li><li>donkey</li><li>southern platyfish</li><li>little spotted kiwi</li><li>ruff</li><li>three-spined stickleback</li><li>Chinese hamster</li><li>steppe mouse</li><li>Indian medaka</li><li>Upper Galilee mountains blind mole rat</li><li>Abingdon island giant tortoise</li><li>spiny chromis</li><li>Asian
+            bonytongue</li><li>Tasmanian devil</li><li>chicken</li><li>coelacanth</li><li>helmeted guineafowl</li><li>house mouse</li><li>sailfin molly</li><li>koala</li><li>house mouse</li><li>Chinese hamster</li><li>house mouse</li><li>naked mole-rat</li><li>Spoon-billed sandpiper</li><li>common mallard</li><li>Bolivian squirrel monkey</li>
+            <li>Bengalese finch</li><li>white-tufted-ear marmoset</li><li>Domestic sheep</li><li>Olive baboon</li><li>Crab-eating macaque</li><li>mainland tiger snake</li><li>Goat</li><li>mummichog</li><li>American black bear</li><li>house mouse</li><li>tammar wallaby</li><li>bottlenosed dolphin</li><li>western mosquitofish</li><li>domestic
+            cat</li><li>bonobo</li><li>Northern white-cheeked gibbon</li><li>African green monkey</li><li>cattle</li><li>clown anemonefish</li><li>Shrew mouse</li><li>Japanese quail</li><li>Philippine tarsier</li><li>Great spotted kiwi</li><li>Pig-tailed macaque</li><li>tuatara</li><li>pink-footed goose</li><li>climbing perch</li><li>Spotted
+            gar</li><li>Golden snub-nosed monkey</li><li>Daurian ground squirrel</li><li>Amazon molly</li><li>turbot</li><li>algerian mouse</li><li>sea lamprey</li><li>western clawed frog</li><li>Agassiz's desert tortoise</li><li>American bison</li><li>house mouse</li><li>channel catfish</li><li>Degu</li><li>Angola colobus</li><li>golden-collared
+            manakin</li><li>eastern happy</li><li>greater bamboo lemur</li><li>western european house mouse</li><li>nine-banded armadillo</li><li>mangrove rivulus</li><li>house mouse</li><li>Arctic ground squirrel</li><li>Western Lowland Gorilla</li><li>gray mouse lemur</li><li>Drill</li><li>central bearded dragon</li><li>American mink</li>
+            <li>Great Tit</li><li>rhesus monkey</li><li>platypus</li><li>Japanese medaka HNI</li><li>Inshore hagfish</li><li>dingo</li><li>zebrafish</li><li>house mouse</li><li>bicolor damselfish</li><li>Long-tailed chinchilla</li><li>house mouse</li><li>Mexican tetra</li><li>thirteen-lined ground squirrel</li><li>alpaca</li><li>Australian
+            saltwater crocodile</li><li>white-throated sparrow</li><li>orange clownfish</li><li>Tiger</li><li>domestic turkey</li><li>Ugandan red Colobus</li><li>Alpine marmot</li><li>common canary</li><li>Okarito brown kiwi</li><li>Argentine black and white tegu</li><li>Hoffmann's two-fingered sloth</li><li>Ryukyu mouse</li><li>European shrew</li>
+            <li>zebra finch</li><li>gelada</li><li>tiger tail seahorse</li><li>Brazilian guinea pig</li><li>Periophthalmus magnuspinnatus</li><li>Ma's night monkey</li><li>little brown bat</li><li>pig</li><li>Coquerel's sifaka</li><li>fruit fly</li><li>Makobe Island cichlid</li><li>small Madagascar hedgehog</li><li>dark-eyed junco</li><li>red
+            fox</li><li>chimpanzee</li><li>Chinese hamster</li><li>greater amberjack</li><li>western European hedgehog</li><li>African savanna elephant</li><li>lyretail cichlid</li><li>Chinese softshell turtle</li><li>vole</li><li>ocean sunfish</li><li>Polar bear</li><li>emu</li><li>rabbit</li><li>Monterrey platyfish</li><li>sheepshead minnow</li>
+            <li>Sea squirt Ciona intestinalis</li><li>red-bellied piranha</li><li>northern pike</li><li>American pika</li><li>Domestic ferret</li><li>Sea squirt Ciona savignyi</li><li>Mongolian gerbil</li><li>Paramormyrops kingsleyae</li><li>Lesser Egyptian jerboa</li><li>Ord's kangaroo rat</li><li>Sooty mangabey</li><li>Nile tilapia</li><li>Bornean
+            orangutan</li><li>Western painted turtle</li><li>zebra mbuna</li><li>horse</li><li>Golden Hamster</li><li>large flying fox</li><li>yellowtail amberjack</li><li>blue tit</li><li>eastern european house mouse</li><li>Atlantic cod</li><li>Burton's mouthbrooder</li><li>baker's yeast</li><li>tongue sole</li><li>dog</li><li>swamp eel</li>
+            <li>giant panda</li><li>American beaver</li><li>Budgie</li><li>Northern American deer mouse</li><li>Collared flycatcher</li><li>wild yak</li><li>house mouse</li><li>south eastern house mouse</li><li>Norway rat</li><li>small-eared galago</li><li>naked mole-rat</li><li>C.elegans</li><li>guppy</li><li>Japanese medaka HSOK</li><li>spotted green
+            pufferfish</li><li>birds</li><li>northern tree shrew</li><li>house mouse</li><li>shortfin molly</li><li>Japanese medaka HdrR</li><li>cape rock hyrax</li><li>house mouse</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    - If we introduce the argument with a random limit within the valid range (in this case 10) the response is:
+    ARGUMENT: http://localhost:8000/listSpecies?limit=10
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+            <body style="background-color: lightpink;">
+                <h1>Names of the first 10 species in the database:</h1>
+                <ol>
+                 <p><li>house mouse</li><li>human</li><li>domestic guinea pig</li><li>house mouse</li><li>Midas cichlid</li><li>green anole</li><li>White-headed capuchin</li
+        <li>ballan wrasse</li><li>leopard</li><li>torafugu</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    - If we introduce the argument with a limit out of range the response is:
+    ARGUMENT: http://localhost:8000/listSpecies?limit=600
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry that limit is out of range</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    - If we introduce the argument with a limit parameter with nothing in it, or the limit 0 it returns all the species available in the data base
+    ARGUMENT: http://localhost:8000/listSpecies?limit=   |or|   http://localhost:8000/listSpecies?limit=0
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+            <body style="background-color: lightpink;">
+                <h1>Names of all the species available in the database: (no limit)</h1>
+                <ol>
+                 <p><li>house mouse</li><li>human</li><li>domestic guinea pig</li><li>house mouse</li><li>Midas cichlid</li><li>green anole</li><li>White-headed capuchin</li><li>ballan wrasse</li><li>leopard</li><li>torafugu</li><li>Black snub-nosed monkey</li><li>zig-zag eel</li><li>blue-crowned manakin</li><li>Damara mole rat</li><li>gray
+            short-tailed opossum</li><li>donkey</li><li>southern platyfish</li><li>little spotted kiwi</li><li>ruff</li><li>three-spined stickleback</li><li>Chinese hamster</li><li>steppe mouse</li><li>Indian medaka</li><li>Upper Galilee mountains blind mole rat</li><li>Abingdon island giant tortoise</li><li>spiny chromis</li><li>Asian
+            bonytongue</li><li>Tasmanian devil</li><li>chicken</li><li>coelacanth</li><li>helmeted guineafowl</li><li>house mouse</li><li>sailfin molly</li><li>koala</li><li>house mouse</li><li>Chinese hamster</li><li>house mouse</li><li>naked mole-rat</li><li>Spoon-billed sandpiper</li><li>common mallard</li><li>Bolivian squirrel monkey</li>
+            <li>Bengalese finch</li><li>white-tufted-ear marmoset</li><li>Domestic sheep</li><li>Olive baboon</li><li>Crab-eating macaque</li><li>mainland tiger snake</li><li>Goat</li><li>mummichog</li><li>American black bear</li><li>house mouse</li><li>tammar wallaby</li><li>bottlenosed dolphin</li><li>western mosquitofish</li><li>domestic
+            cat</li><li>bonobo</li><li>Northern white-cheeked gibbon</li><li>African green monkey</li><li>cattle</li><li>clown anemonefish</li><li>Shrew mouse</li><li>Japanese quail</li><li>Philippine tarsier</li><li>Great spotted kiwi</li><li>Pig-tailed macaque</li><li>tuatara</li><li>pink-footed goose</li><li>climbing perch</li><li>Spotted
+            gar</li><li>Golden snub-nosed monkey</li><li>Daurian ground squirrel</li><li>Amazon molly</li><li>turbot</li><li>algerian mouse</li><li>sea lamprey</li><li>western clawed frog</li><li>Agassiz's desert tortoise</li><li>American bison</li><li>house mouse</li><li>channel catfish</li><li>Degu</li><li>Angola colobus</li><li>golden-collared
+            manakin</li><li>eastern happy</li><li>greater bamboo lemur</li><li>western european house mouse</li><li>nine-banded armadillo</li><li>mangrove rivulus</li><li>house mouse</li><li>Arctic ground squirrel</li><li>Western Lowland Gorilla</li><li>gray mouse lemur</li><li>Drill</li><li>central bearded dragon</li><li>American mink</li>
+            <li>Great Tit</li><li>rhesus monkey</li><li>platypus</li><li>Japanese medaka HNI</li><li>Inshore hagfish</li><li>dingo</li><li>zebrafish</li><li>house mouse</li><li>bicolor damselfish</li><li>Long-tailed chinchilla</li><li>house mouse</li><li>Mexican tetra</li><li>thirteen-lined ground squirrel</li><li>alpaca</li><li>Australian
+            saltwater crocodile</li><li>white-throated sparrow</li><li>orange clownfish</li><li>Tiger</li><li>domestic turkey</li><li>Ugandan red Colobus</li><li>Alpine marmot</li><li>common canary</li><li>Okarito brown kiwi</li><li>Argentine black and white tegu</li><li>Hoffmann's two-fingered sloth</li><li>Ryukyu mouse</li><li>European shrew</li>
+            <li>zebra finch</li><li>gelada</li><li>tiger tail seahorse</li><li>Brazilian guinea pig</li><li>Periophthalmus magnuspinnatus</li><li>Ma's night monkey</li><li>little brown bat</li><li>pig</li><li>Coquerel's sifaka</li><li>fruit fly</li><li>Makobe Island cichlid</li><li>small Madagascar hedgehog</li><li>dark-eyed junco</li><li>red
+            fox</li><li>chimpanzee</li><li>Chinese hamster</li><li>greater amberjack</li><li>western European hedgehog</li><li>African savanna elephant</li><li>lyretail cichlid</li><li>Chinese softshell turtle</li><li>vole</li><li>ocean sunfish</li><li>Polar bear</li><li>emu</li><li>rabbit</li><li>Monterrey platyfish</li><li>sheepshead minnow</li>
+            <li>Sea squirt Ciona intestinalis</li><li>red-bellied piranha</li><li>northern pike</li><li>American pika</li><li>Domestic ferret</li><li>Sea squirt Ciona savignyi</li><li>Mongolian gerbil</li><li>Paramormyrops kingsleyae</li><li>Lesser Egyptian jerboa</li><li>Ord's kangaroo rat</li><li>Sooty mangabey</li><li>Nile tilapia</li><li>Bornean
+            orangutan</li><li>Western painted turtle</li><li>zebra mbuna</li><li>horse</li><li>Golden Hamster</li><li>large flying fox</li><li>yellowtail amberjack</li><li>blue tit</li><li>eastern european house mouse</li><li>Atlantic cod</li><li>Burton's mouthbrooder</li><li>baker's yeast</li><li>tongue sole</li><li>dog</li><li>swamp eel</li>
+            <li>giant panda</li><li>American beaver</li><li>Budgie</li><li>Northern American deer mouse</li><li>Collared flycatcher</li><li>wild yak</li><li>house mouse</li><li>south eastern house mouse</li><li>Norway rat</li><li>small-eared galago</li><li>naked mole-rat</li><li>C.elegans</li><li>guppy</li><li>Japanese medaka HSOK</li><li>spotted green
+            pufferfish</li><li>birds</li><li>northern tree shrew</li><li>house mouse</li><li>shortfin molly</li><li>Japanese medaka HdrR</li><li>cape rock hyrax</li><li>house mouse</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    - If we introduce the argument with a negative limit the response is:
+    ARGUMENT: http://localhost:8000/listSpecies?limit=-6
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry the limit needs to be a positive number</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    - If we introduce the argument with the limit having simbols, letters... the response is:
+    ARGUMENT: http://localhost:8000/listSpecies?limit=hola&@
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry the limit needs to be a positive number</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+
+2. /karyotype with a parameter (specie) mandatory
+    - If we introduce the argument with a random specie that is in the database (in this case mouse) it returns the name (usually a number) of all the chromosomes, you can write it also in upper case:
+    ARGUMENT: http://localhost:8000/karyotype?specie=mouse
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+            <body style="background-color: lightpink;">
+                <h1>karyotype of mouse:</h1>
+                <ul>
+                 <p><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>X</li><li>Y</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    ARGUMENT: http://localhost:8000/karyotype?specie=HUMAN
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+            <body style="background-color: lightpink;">
+                <h1>karyotype of HUMAN:</h1>
+                <ul>
+                 <p><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>X</li><li>Y</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+
+    The program searches the parameter that we introduce as specie in the database, if it finds that specie it returns its karyotype, however there are some species whose karyotype is not in the database, in the case when the specie is not found whatever it is a number etc it returns the error page. Some examples:
+    - If we introduce the argument with a specie whose karyotype is not in the database the response is:
+    ARGUMENT: http://localhost:8000/karyotype?specie=leopard
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry the karyotype for that specie "leopard" was not found in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    - If we introduce the argument with a specie being a number, a simbol, or just a misspelled specie the response is:
+    ARGUMENT: http://localhost:8000/karyotype?specie= 5 |or| http://localhost:8000/karyotype?specie=sdfgj |or| http://localhost:8000/karyotype?specie=humane
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry the karyotype for that specie "5" was not found in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    - If we introduce the argument with a specie with nothing in it or without the parameter specie the response is:
+    ARGUMENT: http://localhost:8000/karyotype?specie= |or| http://localhost:8000/karyotype?
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry the karyotype for that specie "" was not found in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+
+3. /chromosomeLength with 2 parameters (specie and chromosome) that are mandatory, it returns the length of that given chromosome
+    - If we introduce the argument with a specie and a chromosome that are in the database the response is:
+    ARGUMENT: http://localhost:8000/chromosomeLength?specie=mouse&chromo=18
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+            <body style="background-color: lightpink;">
+                <h1>Length of the chromosome: 18 of the specie: mouse</h1>
+                <ul>
+                 <p><li>90702639</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    ARGUMENT: http://localhost:8000/chromosomeLength?specie=HUMAN&chromo=X  (specie and chromosome in upper case)
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+            <body style="background-color: lightpink;">
+                <h1>Length of the chromosome: X of the specie: HUMAN</h1>
+                <ul>
+                 <p><li>156040895</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    - If we introduce the argument with the parameters in the opposite order, first the chromosome and then the specie the response is the same:
+    ARGUMENT: http://localhost:8000/chromosomeLength?chromo=18&specie=mouse
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+            <body style="background-color: lightpink;">
+                <h1>Length of the chromosome: 18 of the specie: mouse</h1>
+                <ul>
+                 <p><li>90702639</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    - If we introduce the argument with a specie and/or a chromosome that are not in the database the response is:
+    ARGUMENT: http://localhost:8000/chromosomeLength?specie=mouse&chromo=300 (300 is not a chromosome of the mouse)
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry either the specie or the chomosome was not found in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/chromosomeLength?specie=hola&chromo=x ('hola' specie does not exist, so it is not in the database)
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry either the specie or the chomosome was not found in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/chromosomeLength?specie=5&chromo=hola
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry either the specie or the chomosome was not found in the database</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    - If we introduce the argument without paramaters, or just with one, or with 1 of them with nothing in it... the response is:
+    ARGUMENTS: http://localhost:8000/chromosomeLength? |or| http://localhost:8000/chromosomeLength?specie=human&chromo=  |or| http://localhost:8000/chromosomeLength?specie=cat
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry both parameters are needed</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+
+4. If other endpoint different than the previous ones is introduced, the server will response with an HTML error page
+    ARGUMENT: http://localhost:8000/endGame
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/B79CBE56-32F3-A142-8321-C770B7323802/main.js" charset="UTF-8"></script></head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry that endpoint is not valid</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
