@@ -215,26 +215,252 @@ To this http://localhost:8000 you can add different endpoints belonging to the m
         </html>
 
 4. /geneList with 3 parameters (chromosome, start and end positions)
- - If we introduce the argument with a human gene from the database it returns the calculations on the given human gene; the total length and the percentage of all its bases: :
-    ARGUMENT: http://localhost:8000/geneCalc?gene=FRAT1
+ - If we introduce the argument with 3 correct parameters, the result is:
+    ARGUMENT: http://localhost:8000/geneList?chromo=1&start=0&end=30000
     RESPONSE:
-
-all good
-chromo x start 1 end 2
-chromo 3 end    start
-start end chromo
-start chromo end
-genelist?
-start algo end nada chromo si
-start nada end algo chromo si
-chromo out of range start end
-chromo end normales start negativo
-start 78 end 7 chromo x
-start end chromo nada
-start= . todo bien
-chromo ? start end
-end mayor que la length
-(mirarme los errores
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Names of the genes located in the chromosome 1 from the start (0) to end (30000) positions</h1>
+                <ul>
+                 <p>Name of the genes:<li>DDX11L1</li><li>WASH7P</li><li>MIR6859-1</li><li>MIR1302-2HG</li><li>DDX11L1-202</li><li>DDX11L1-201</li><li>WASH7P-201</li><li>MIR6859-1-201</li><li>MIR1302-2HG-202</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+ - If we introduce the argument with the 3 correct parameters but in different order, the result is:
+    ARGUMENT: http://localhost:8000/geneList?start=0&end=30000&chromo=1
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Names of the genes located in the chromosome 1 from the start (0) to end (30000) positions</h1>
+                <ul>
+                 <p>Name of the genes:<li>DDX11L1</li><li>WASH7P</li><li>MIR6859-1</li><li>MIR1302-2HG</li><li>DDX11L1-202</li><li>DDX11L1-201</li><li>WASH7P-201</li><li>MIR6859-1-201</li><li>MIR1302-2HG-202</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    ARGUMENT: http://localhost:8000/geneList?end=50000&chromo=9&start=5
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Names of the genes located in the chromosome 9 from the start (5) to end (50000) positions</h1>
+                <ul>
+                 <p>Name of the genes:<li>DDX11L5</li><li>WASHC1</li><li>AL928970.1</li><li>MIR1302-9</li><li>FAM138C</li><li>DDX11L5-201</li><li>WASHC1-201</li><li>WASHC1-202</li><li>AL928970.1-201</li><li>MIR1302-9-201</li><li>FAM138C-202</li><li>FAM138C-203</li><li>FAM138C-201</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+    ARGUMENT: http://localhost:8000/geneList?start=5&chromo=9&end=50000
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>RESPONSE OF THE INFO REQUESTED:</title>
+            </head>
+            <body style="background-color: lightpink;">
+                <h1>Names of the genes located in the chromosome 9 from the start (5) to end (50000) positions</h1>
+                <ul>
+                 <p>Name of the genes:<li>DDX11L5</li><li>WASHC1</li><li>AL928970.1</li><li>MIR1302-9</li><li>FAM138C</li><li>DDX11L5-201</li><li>WASHC1-201</li><li>WASHC1-202</li><li>AL928970.1-201</li><li>MIR1302-9-201</li><li>FAM138C-202</li><li>FAM138C-203</li><li>FAM138C-201</li></p>
+                <a href="/">Main page</a>
+            </body>
+            </html>
+ - If we introduce the argument with 3 parameters and one of them is not found in the database, the result is:
+    ARGUMENT: http://localhost:8000/geneList?chromo=X&start=0&end=3000
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry, there are no genes located in that positions</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=x&start=1&end=2
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry, there are no genes located in that positions</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=600&start=0&end=30000   (chromosome 600 does not exist)
+    RESPONSE:
+         <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>No slice found for location 600:0-30000</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=y&start=-6&end=30000
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>-6 is not a valid start</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=y&start=0&end=57227415
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>57227415 is greater than the maximum allowed length of 5000000. Request smaller regions of sequence</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=5&start=12000&end=0
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Cannot request negative or 0 end indexes through this interface. Given 0 but expected something greater than 0</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=hola&start=0&end=30000
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>No slice found for location hola:0-30000</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=15&start=@&end=30000
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Could not decode region 15:@-30000</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+ - If we introduce the argument with one of the parameters with nothing in it or without parameters:
+    ARGUMENT: http://localhost:8000/geneList?chromo=&start=0&end=30000
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Location :0-30000 not understood</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=22&end=5500&start=
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>-5500 is not a valid start</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=&end=&start=
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Location :- not understood</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry both parameters are needed</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
+    ARGUMENT: http://localhost:8000/geneList?chromo=
+    RESPONSE:
+        <!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Error server</title>
+          </head>
+          <body style="background-color: red;">
+            <h1>ERROR</h1>
+            <p>Sorry both parameters are needed</p>
+          <a href="/">Main page</a>
+          </body>
+        </html>
 
 5. If other endpoint different than the previous ones is introduced, the server will response with an HTML error page
     ARGUMENT: http://localhost:8000/notToday
