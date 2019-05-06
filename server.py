@@ -267,12 +267,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 f.close()
         elif '/geneList' in self.path:
             try:
-                info = '>'
+                info = '>Name of the genes:'
                 dict_1 = dict()
                 content = open_html()
                 msg_sent_1 = self.path.split("?")
                 msg_sent_2 = msg_sent_1[1].split('&')
-                print(msg_sent_2)
                 for i in msg_sent_2:
                     try:
                         keys = i.split("=")[0]
@@ -284,29 +283,50 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     except IndexError:
                         pass
                 info_list = get_info('/overlap/region/human/' + dict_1['chromo'] +":"+dict_1['start']+"-"+dict_1['end'] + '?content-type=application/json;feature=gene;feature=transcript;feature=cds;feature=exon')
-                print(info_list, 'p')
                 type_h = '<ul>'
-                h1 = 'Names of the genes located in the chromosome {} from the start ({}) to end ({}) positions'.format(
-                    dict_1['chromo'], dict_1['start'], dict_1['end'])
-                for i in range(len(info_list)):
-                    if 'external_name' in info_list[i]:
-                        info += '<li>' + info_list[i]['external_name'] + '</li>'  # i convert everything to string when adding to a list because 'int' objects are not subscriptable
-                print(info)
+                h1 = 'Name of the genes located in the chromosome {} from the start ({}) to end ({}) positions'.format(dict_1['chromo'], dict_1['start'], dict_1['end'])
+                if 'error' in info_list:
+                    error = info_list['error']
+                    f = open("error.html")
+                    code = 404
+                    content = f.read().format(error)
+                    f.close()
+                elif dict_1['chromo'] == '':
+                    error = 'Sorry the parameter chomosome is needed'
+                    f = open("error.html")
+                    code = 404
+                    content = f.read().format(error)
+                    f.close()
+                elif dict_1['start'] == '':
+                    error = 'Sorry the parameter start is needed'
+                    f = open("error.html")
+                    code = 404
+                    content = f.read().format(error)
+                    f.close()
+                elif dict_1['end'] == '':
+                    error = 'Sorry the parameter end is needed'
+                    f = open("error.html")
+                    code = 404
+                    content = f.read().format(error)
+                    f.close()
+                elif info_list == []:
+                    error = 'Sorry, there are no genes located in that positions'
+                    f = open("error.html")
+                    code = 404
+                    content = f.read().format(error)
+                    f.close()
+                else:
+                    for i in range(len(info_list)):
+                        if 'external_name' in info_list[i]:
+                            info += '<li>' + info_list[i]['external_name'] + '</li>'  # i convert everything to string when adding to a list because 'int' objects are not subscriptable
                 code = 200
                 content = content.format(h1, type_h, info)
             except KeyError:
-                error = 'Sorry there are no genes located in that chromosome and/or in those positions'
+                error = 'Sorry both parameters are needed'
                 f = open("error.html")
                 code = 404
                 content = f.read().format(error)
                 f.close()
-            except IndexError:   #list index out of range
-                error = 'Sorry there are no genes located in that chromosome and/or in those positions'
-                f = open("error.html")
-                code = 404
-                content = f.read().format(error)
-                f.close()
-
         else:
             error = 'Sorry that endpoint is not valid'
             f = open("error.html")
