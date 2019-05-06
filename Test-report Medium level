@@ -219,6 +219,22 @@ To this http://localhost:8000 you can add different endpoints belonging to the m
     ARGUMENT: http://localhost:8000/geneCalc?gene=FRAT1
     RESPONSE:
 
+all good
+chromo x start 1 end 2
+chromo 3 end    start
+start end chromo
+start chromo end
+genelist?
+start algo end nada chromo si
+start nada end algo chromo si
+chromo out of range start end
+chromo end normales start negativo
+start 78 end 7 chromo x
+start end chromo nada
+start= . todo bien
+chromo ? start end
+end mayor que la length
+(mirarme los errores
 
 5. If other endpoint different than the previous ones is introduced, the server will response with an HTML error page
     ARGUMENT: http://localhost:8000/notToday
